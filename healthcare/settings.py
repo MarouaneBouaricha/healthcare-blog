@@ -38,7 +38,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'ckeditor',
-    'cloudinary'
+    'cloudinary',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
