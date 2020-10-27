@@ -1,0 +1,33 @@
+{% extends 'blog/base.html'%} 
+{% block header %}
+<header
+  class="masthead"
+  style="background-image: url('{{post.imageURL}}')"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1 class="text-center">{{post.title}}</h1>
+          <h2 class="text-center subheading">{{post.subtitle|safe}}</h2>
+          <span class="meta text-center">Posted by
+            {{post.author}}
+            on {{post.date_posted}}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %} {% block content %}
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {{post.content|safe}}
+      </div>
+    </div>
+  </div>
+</article>
+{% endblock %}

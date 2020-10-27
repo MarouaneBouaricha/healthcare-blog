@@ -1,0 +1,39 @@
+{% extends 'blog/base.html'%} 
+{% block header %}
+<header
+  class="masthead"
+  style="background-image: url('/static/blog/img/categories.jpg')"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Categories</h1>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %} {% block content %}
+
+<div class="container-fluid">
+    <div class="card-deck">
+  
+      {% for cat in categories %}
+
+        <div class="card text-center shadow-lg">
+          <a href="{% url 'blog-category' categoryId=cat.id %}"><img class="card-img-top" src="/static{{ cat.imageURL }}" height="350"></a>
+          <div class="card-body">
+            <h2 class="card-title"><span class="fa fa-external-link mr-1"></span><a href="{% url 'blog-category' categoryId=cat.id %}">{{ cat.name }}</a></h2>
+          </div>
+        </div>
+
+     {% endfor %}
+      
+  
+    </div>
+  </div>
+
+{% endblock %}
