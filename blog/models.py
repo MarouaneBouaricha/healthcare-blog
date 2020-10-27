@@ -38,3 +38,12 @@ class Post(models.Model):
         except:
             url = ''
         return url
+
+
+class ContactMessage(models.Model):
+	name = models.CharField(max_length=200, null=False)
+	email = models.CharField(max_length=200, null=False)
+	message = models.TextField()
+
+	def __str__(self):
+		return self.name

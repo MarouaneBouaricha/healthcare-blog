@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="icon" href="{% static 'blog/img/logo.png' %}">
+    <link rel="icon" href="{% static 'blog/img/logo.png' %}" />
     {% if title %}
     <title>Beyond - {{title}}</title>
     {% else %}
@@ -28,6 +28,11 @@
       type="text/css"
     />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      type="text/css"
+    />
+    <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
       rel="stylesheet"
       type="text/css"
@@ -35,18 +40,32 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'blog/css/clean-blog.min.css' %}" rel="stylesheet" />
+    <script type="text/javascript">
+      function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+    </script>
   </head>
 
   <body>
     <!-- Navigation -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top"
-      id="mainNav"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'blog-home' %}">
-          BE
-        </a>
+        <a class="navbar-brand" href="{% url 'blog-home' %}"> BE </a>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
@@ -79,8 +98,6 @@
         </div>
       </div>
     </nav>
-    
-  
 
     <!-- Page Header -->
     {% block header %} {% endblock %}
@@ -130,7 +147,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'blog/js/jquery.min.js' %}"></script>
     <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Custom scripts for this template -->
     <script src="{% static 'blog/js/clean-blog.min.js' %}"></script>
   </body>

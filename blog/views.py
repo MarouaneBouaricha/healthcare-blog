@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from .models import *
+from django.http import JsonResponse
+import json
 
 def home(request):
     posts =  Post.objects.all().order_by('-date_posted')[:3]
@@ -15,6 +17,15 @@ def post(request, postId):
 
 def contact(request):
     return render(request, 'blog/contact.html', {'title': "Contact",})
+
+def processContact(request):
+	data = json.loads(request.body)
+	ContactMessage.objects.create(
+		name= data['form']['name'],
+		email= data['form']['email'],
+		message= data['form']['message'],
+	)
+	return JsonResponse('Message saved..', safe=False)
 
 class CategoriesListView(ListView):
     model = Category

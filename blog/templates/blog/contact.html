@@ -23,9 +23,7 @@
         Want to get in touch? Fill out the form below to send me a message and I
         will get back to you as soon as possible!
       </p>
-      <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-      <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-      <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+      
       <form name="sentMessage" id="contactForm" novalidate>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
@@ -56,20 +54,6 @@
           </div>
         </div>
         <div class="control-group">
-          <div class="form-group col-xs-12 floating-label-form-group controls">
-            <label>Phone Number</label>
-            <input
-              type="tel"
-              class="form-control"
-              placeholder="Phone Number"
-              id="phone"
-              required
-              data-validation-required-message="Please enter your phone number."
-            />
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-        <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Message</label>
             <textarea
@@ -92,4 +76,60 @@
     </div>
   </div>
 </div>
+
+
+
+<script>
+  var contactForm = document.getElementById("contactForm");
+  contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var ContactUserForm = {
+        name: null,
+        email: null,
+        message: null,
+      };
+
+      ContactUserForm.name = contactForm.name.value;
+      ContactUserForm.email = contactForm.email.value;
+      ContactUserForm.message = contactForm.message.value;
+
+      var url = "/process_contact/";
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "applicaiton/json",
+            "X-CSRFToken": getToken('csrftoken'),
+          },
+          body: JSON.stringify({ form: ContactUserForm }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          toastr["success"]("Thank you for contacting us", "Your Message has been saved!")
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": true,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+
+      contactForm.name.value = '';
+      contactForm.email.value = '';
+      contactForm.message.value = '';
+
+    });
+    });
+</script>
+
 {% endblock %}
