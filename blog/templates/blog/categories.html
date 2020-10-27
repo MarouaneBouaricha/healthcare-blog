@@ -24,7 +24,7 @@
       {% for cat in categories %}
 
         <div class="card text-center shadow-lg">
-          <a href="{% url 'blog-category' categoryId=cat.id %}"><img class="card-img-top" src="/static{{ cat.imageURL }}" height="350"></a>
+          <a href="{% url 'blog-category' categoryId=cat.id %}"><img class="card-img-top" src="{{ cat.imageURL }}" height="350"></a>
           <div class="card-body">
             <h2 class="card-title"><span class="fa fa-external-link mr-1"></span><a href="{% url 'blog-category' categoryId=cat.id %}">{{ cat.name }}</a></h2>
           </div>
