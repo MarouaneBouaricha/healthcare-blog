@@ -23,7 +23,7 @@
     <div class="col-lg-8 col-md-10 mx-auto">
       {% for post in posts %}
       <div class="post-preview">
-        <img src="{{post.imageURL}}" class="image-fluid">
+        <img src="{{post.imageURL}}" class="w-100">
         <a href="{% url 'blog-post' postId=post.id%}">
           <h2 class="post-title text-center">
             {{post.title}}
