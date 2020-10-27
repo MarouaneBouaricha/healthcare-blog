@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ckeditor',
+    'cloudinary'
     'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -132,10 +137,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 
 cloudinary.config( 
-  cloud_name = "diwe3wkoo", 
+  cloud_name = "dvetwha00", 
   api_key = "966773921386127", 
   api_secret = "Ys6a3drsGeq8IHH2v4jkX5ztTBM" 
 )
+
+django_heroku.settings(locals())
 
 CKEDITOR_CONFIGS = {
     'Full_tool_bar': {
